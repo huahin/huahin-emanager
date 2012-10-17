@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="jobFlowService"
+        class="org.huahinframework.emanager.rest.service.JobFlowService"
+        init-method="init">
+    <property name="emrProperties">
+      <ref bean="emrProperties" />
+    </property>
+  </bean>
+  <bean id="queueService"
+        class="org.huahinframework.emanager.rest.service.QueueService"
+        init-method="init">
+    <property name="emrProperties">
+      <ref bean="emrProperties" />
+    </property>
+  </bean>
+</beans>

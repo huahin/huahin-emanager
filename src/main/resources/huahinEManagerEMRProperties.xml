@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+  <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="location"
+              value="file:${huahin.home}/conf/huahinEManager.properties"/>
+  </bean>
+
+  <bean id="emrProperties" class="org.huahinframework.emanager.amazonaws.elasticmapreduce.EMRProperties">
+    <property name="jobForWait"
+              value="${terminate.jobForWait}"/>
+    <property name="accessKey"
+              value="${emr.accesskey}"/>
+    <property name="secretKey"
+              value="${emr.secretkey}"/>
+    <property name="endpoint"
+              value="${emr.endpoint}"/>
+    <property name="keyPairName"
+              value="${emr.keypairname}"/>
+    <property name="hadoopVersion"
+              value="${emr.hadoopversion}"/>
+    <property name="availabilityZone"
+              value="${emr.availabilityzone}"/>
+    <property name="instanceCount"
+              value="${emr.instancecount}"/>
+    <property name="masterInstanceType"
+              value="${emr.masterInstancetype}"/>
+    <property name="slaveInstanceType"
+              value="${emr.slaveInstancetype}"/>
+    <property name="debug"
+              value="${emr.debug}"/>
+    <property name="logUri"
+              value="${emr.loguri}"/>
+  </bean>
+</beans>
