@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Huahin Emanager : Simple Management System for Amazon Elasctic MapReduce" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Huahin Emanager</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/huahin/huahin-emanager">View on GitHub</a>
+
+          <h1 id="project_title">Huahin Emanager</h1>
+          <h2 id="project_tagline">Simple Management System for Amazon Elasctic MapReduce</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/huahin/huahin-emanager/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/huahin/huahin-emanager/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Huahin EManager</h2>
+
+<p>Huahin EManager is a Simple Management System for Amazon Elasctic MapReduce.
+Huahin EManager can get a list of Job Flow, describe Job Flow, do a kill for the step, and Job queue management.
+Huahin EManager is optimized to reduce the cost and start the instance.</p>
+
+<p>Huahin EManager is distributed under Apache License 2.0.</p>
+
+<h3>Download</h3>
+
+<p><a href="https://github.com/downloads/huahin/huahin-emanager/huahin-emanager-a-0.1.0.tar.gz">Huahin EManager 0.1.0</a>
+<br></p>
+
+<h3>Requirements</h3>
+
+<pre><code>Java 6+
+</code></pre>
+
+<p><br></p>
+
+<h3>Install Huahin EManager</h3>
+
+<pre><code>~ $ tar xzf huahin-emanager-x.x.x.tar.gz
+</code></pre>
+
+<p><br></p>
+
+<h3>Setup of AWS Security Group</h3>
+
+<p>Set the your IP address and port(9010) for the Huahin Manager to the Security Group(ElasticMapReduce-master). For example:</p>
+
+<pre><code>Port range: 9010
+Source: 1.1.1.1/32
+</code></pre>
+
+<p><br></p>
+
+<h3>Configure Huahin EManager</h3>
+
+<p>Edit the huahin-emanager-x.x.x/conf/huahinEManager.properties file.<br>
+For example:<br></p>
+
+<p>Elastitc MapReduce cluster size. The size of the cluster that start at parallel.(required)</p>
+
+<pre><code>job.clusterSize=1
+</code></pre>
+
+<p>At the time of shutdown of EManager, specify whether it wait for the end of Job.(required)</p>
+
+<pre><code>terminate.jobForWait=true
+</code></pre>
+
+<p>AWS access key(required)</p>
+
+<pre><code>emr.accesskey=XXXXXXXXXXXXXXX
+</code></pre>
+
+<p>AWS secret key(required)</p>
+
+<pre><code>emr.secretkey=YYYYYYYYYYYYYYY
+</code></pre>
+
+<p>Regions and Endpoints.(If not specified, the default of EMR is applied.)<br>
+(<a href="http://docs.amazonwebservices.com/general/latest/gr/rande.html">http://docs.amazonwebservices.com/general/latest/gr/rande.html</a>)</p>
+
+<pre><code>emr.secretkey=YYYYYYYYYYYYYYY
+</code></pre>
+
+<p>Availability zone.(If not specified, the default of EMR is applied.)</p>
+
+<pre><code>emr.availabilityzone=us-east-1a
+</code></pre>
+
+<p>Amazon EC2 Key Pair(If not specified, the default of EMR is applied.)</p>
+
+<pre><code>emr.keypairname=keyname
+</code></pre>
+
+<p>Hadoop version.(If not specified, the default of EMR is applied.)</p>
+
+<pre><code>emr.hadoopversion=1.0.3
+</code></pre>
+
+<p>Instance count.(required)</p>
+
+<pre><code>emr.instancecount=2
+</code></pre>
+
+<p>Master Instance Type.(required)</p>
+
+<pre><code>emr.masterInstancetype=m2.xlarge
+</code></pre>
+
+<p>Slave Instance Type.(If not specified, master instance type is applied.)</p>
+
+<pre><code>emr.slaveInstancetype=m1.small
+</code></pre>
+
+<p>True means EMR will store an index of your logs (requires an emr.loguri propertie). (required)</p>
+
+<pre><code>emr.debug=false
+</code></pre>
+
+<p>To copy log files from the job flow to Amazon S3, specify an Amazon S3 bucket.(optional)</p>
+
+<pre><code>emr.loguri=s3://loguri/
+</code></pre>
+
+<p>When you change the boot port and shutdown port, edit the huahin-emanager-x.x.x/conf/port and shutdown port file.</p>
+
+<h3>Start/Stop Huahin EManager</h3>
+
+<p>To start/stop Huahin Manager use Huahin EManager's bin/emanager script. For example:</p>
+
+<pre><code>$ bin/emanager start
+</code></pre>
+
+<p><br></p>
+
+<h3>Test Huahin EManager is working</h3>
+
+<pre><code>  ~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/jobflow/list"
+[
+  {
+    "creationDate": "Tue Oct 16 21:02:16 JST 2012",
+    "endDate": "Tue Oct 16 21:10:21 JST 2012",
+    "jobFlow": "j-2R5KLHJORAE0W",
+    "startDate": "Tue Oct 16 21:06:11 JST 2012",
+    "state": "TERMINATED"
+  }
+]
+</code></pre>
+
+<p><br></p>
+
+<h3>Huahin EManager REST Job Flow APIs</h3>
+
+<p>Get all job flow list. For example:</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/jobflow/list"
+</code></pre>
+
+<p><br></p>
+
+<p>Get running job flow list. For example:</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/jobflow/runnings"
+</code></pre>
+
+<p><br></p>
+
+<p>Get describe job flow. &lt;JOB FLOW ID&gt; specifies the job flow ID.</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/jobflow/describe/&lt;JOB FLOW ID&gt;"
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/jobflow/describe/j-XXXXXXXXXX"
+</code></pre>
+
+<p><br></p>
+
+<p>Kill step for step name. &lt;STEP NAME&gt; specifies the step name.</p>
+
+<pre><code>~ $ curl -X DELETE "http://&lt;HOSTNAME&gt;:9020/jobflow/kill/step/&lt;STEP NAME&gt;"
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code>~ $ curl -X DELETE "http://&lt;HOSTNAME&gt;:9020/jobflow/kill/step/S_XXXXXXXXXXX"
+</code></pre>
+
+<p><br></p>
+
+<h3>Huahin EManager REST queue APIs</h3>
+
+<p>Get all queue list. For example:</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/queue/list"
+</code></pre>
+
+<p><br></p>
+
+<p>Get running queue list. For example:</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/queue/runnings"
+</code></pre>
+
+<p><br></p>
+
+<p>Get describe queue &lt;STEP NAME&gt; specifies the step name.</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/queue/describe/&lt;STEP NAME&gt;"
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code>~ $ curl -X GET "http://&lt;HOSTNAME&gt;:9020/queue/describe/S_XXXXXXXXXXX"
+</code></pre>
+
+<p><br></p>
+
+<p>Kill queue for step name. &lt;STEP NAME&gt; specifies the step name.</p>
+
+<pre><code>~ $ curl -X DELETE "http://&lt;HOSTNAME&gt;:9020/queue/kill/&lt;STEP NAME&gt;"
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code>~ $ curl -X DELETE "http://&lt;HOSTNAME&gt;:9020/queue/kill/S_XXXXXXXXXXX"
+</code></pre>
+
+<p><br></p>
+
+<h4>Register job</h4>
+
+<p>Specifies of all ARGUMENTS is JSON.
+PUT method is specifies the scripts or jar on the S3.
+POST method upload the scripts or jar to S3.</p>
+
+<h5>Register Hive and Pig job</h5>
+
+<ul>
+<li>PUT method
+
+<ul>
+<li>Required ARGUMENTS
+
+<ul>
+<li>script</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>POST method
+
+<ul>
+<li>Required SCRIPT</li>
+<li>Required ARGUMENTS
+
+<ul>
+<li>script</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><p>For PUT Hive example:</p>
+
+<pre><code>~ $ curl -X PUT http://localhost:9020/queue/register/hive \
+    -F ARGUMENTS='{"script":"s3://huahin/wordcount.hql","arguments":["arg1","arg2"]}'
+</code></pre>
+
+<p><br></p>
+
+<p>For PUT Pig example:</p>
+
+<pre><code>~ $ curl -X PUT http://localhost:9020/queue/register/pig \
+    -F ARGUMENTS='{"script":"s3://huahin/wordcount.pig","arguments":["arg1","arg2"]}'
+</code></pre>
+
+<p><br></p>
+
+<p>For POST Hive example:</p>
+
+<pre><code>~ $ curl -X POST http://localhost:9020/queue/register/hive
+    -F SCRIPT=@wordcount.hql \
+    -F ARGUMENTS='{"script":"s3://huahin/wordcount.hql","arguments":["arg1","arg2"]}'
+</code></pre>
+
+<p><br></p>
+
+<p>For POST Pig example:</p>
+
+<pre><code>~ $ curl -X POST http://localhost:9020/queue/register/pig
+    -F SCRIPT=@wordcount.pig \
+    -F ARGUMENTS='{"script":"s3://huahin/wordcount.pig","arguments":["arg1","arg2"]}'
+</code></pre>
+
+<p><br></p>
+
+<p>If deleteOnExit of arguments is true, the script is deleted after execution.<br>
+For POST Hive example:</p>
+
+<pre><code>~ $ curl -X POST http://localhost:9020/queue/register/hive
+    -F SCRIPT=@wordcount.hql \
+    -F ARGUMENTS='{"script":"s3://huahin/wordcount.hql","arguments":["arg1","arg2"], "deleteOnExit":"true"}'
+</code></pre>
+
+<p><br></p>
+
+<h5>Register Streaming job</h5>
+
+<ul>
+<li>PUT method
+
+<ul>
+<li>Required ARGUMENTS
+
+<ul>
+<li>input, output, mapper, reducer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>POST method
+
+<ul>
+<li>Required MAPPER</li>
+<li>Required REDUCER</li>
+<li>Required ARGUMENTS
+
+<ul>
+<li>input, output, mapper, reducer</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><p>For PUT example:</p>
+
+<pre><code>~ $ curl -X PUT http://localhost:9020/queue/register/streaming \
+    -F ARGUMENTS='{"input":"s3://input/","output":"s3://output/","mapper":"s3://huahin/map.py","reducer":"s3://huahin/reduce.py"}'
+</code></pre>
+
+<p><br></p>
+
+<p>For POST example:</p>
+
+<pre><code>~ $ curl -X POST http://localhost:9020/queue/register/streaming \
+    -F MAPPER=@map.py \
+    -F REDUCER=@reduce.py \
+    -F ARGUMENTS='{"input":"s3://input/","output":"s3://output/","mapper":"s3://huahin/map.py","reducer":"s3://huahin/reduce.py"}'
+</code></pre>
+
+<p><br></p>
+
+<p>If deleteOnExit of arguments is true, the script is deleted after execution.<br>
+For POST Pig example:</p>
+
+<pre><code>~ $ curl -X POST http://localhost:9020/queue/register/streaming \
+    -F MAPPER=@map.py \
+    -F REDUCER=@reduce.py \
+    -F ARGUMENTS='{"input":"s3://input/","output":"s3://output/","mapper":"s3://huahin/map.py","reducer":"s3://huahin/reduce.py", "deleteOnExit":"true"}'
+</code></pre>
+
+<p><br></p>
+
+<h5>Register custom jar job</h5>
+
+<ul>
+<li>PUT method
+
+<ul>
+<li>Required ARGUMENTS
+
+<ul>
+<li>jar</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>POST method
+
+<ul>
+<li>Required JAR</li>
+<li>Required ARGUMENTS
+
+<ul>
+<li>jar</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><p>For PUT example:</p>
+
+<pre><code>~ $ curl -X PUT http://localhost:9020/queue/register/customjar \
+    -F ARGUMENTS='{"jar":"s3://huahin/wordcount.jar","arguments":["s3://huahin/input/","-o","s3://huahin/output/"]}'
+</code></pre>
+
+<p><br></p>
+
+<p>For POST example:</p>
+
+<pre><code>~ $ curl -X POST http://localhost:9020/queue/register/customjar \
+    -F JAR=@wordcount.jar \
+    -F ARGUMENTS='{"jar":"s3://huahin/wordcount.jar","arguments":["s3://huahin/input/","-o","s3://huahin/output/"]}'
+</code></pre>
+
+<p><br></p>
+
+<p>If deleteOnExit of arguments is true, the script is deleted after execution.<br>
+For POST Pig example:</p>
+
+<pre><code>~ $ curl -X POST http://localhost:9020/queue/register/customjar \
+    -F JAR=@wordcount.jar \
+    -F ARGUMENTS='{"jar":"s3://huahin/wordcount.jar","arguments":["s3://huahin/input/","-o","s3://huahin/output/", "deleteOnExit":"true"}'
+</code></pre>
+
+<p><br></p>
+
+<h3>Support or Contact</h3>
+
+<p>Contact <a href="mailto:huahin-framework@googlegroups.com">huahin-framework@googlegroups.com</a> and we’ll help you sort it out.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Huahin Emanager maintained by <a href="https://github.com/huahin">huahin</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-32923864-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
