@@ -56,7 +56,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
  *
  */
 public class ElasticMapReduceManager extends Thread {
-    private static final Log log = LogFactory.getLog(ElasticMapReduceManagerTest.class);
+    private static final Log log = LogFactory.getLog(ElasticMapReduceManager.class);
 
     private static final String MAP_REDUCE_NAME = "Job Flow";
     private static final String MEMORY_BOOTSTRAP_NAME = "memory bootstrap";

@@ -84,7 +84,7 @@ public class JobFlowService {
         return JobUtils.getJobFlow(jobFlow, emr);
     }
 
-    @Path("/kill/{" + STEP_NAME + "}")
+    @Path("/kill/step/{" + STEP_NAME + "}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public JSONObject kill(@PathParam(STEP_NAME) String stepName)

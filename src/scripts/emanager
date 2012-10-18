@@ -22,41 +22,30 @@ BASEDIR=`cd ${BASEDIR}/..;pwd`
 HUAHIN_OPTS="-server -Xmx256m -Xms256m -XX:ParallelGCThreads=2 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"
 
 HUAHIN_PORT=$BASEDIR/conf/port
+HUAHIN_SHUTDOWN_PORT=$BASEDIR/conf/shutdownport
 HUAHIN_LOG=$BASEDIR/log/huahin-emanager.log
 HUAHIN_LIB=$BASEDIR/lib
 HUAHIN_WEB=$BASEDIR/webapp
-HUAHIN_PID=$BASEDIR/log/.pid
 
 HUAHIN_JAR=`ls $HUAHIN_LIB/huahin-emanager-*.jar`
 HUAHIN_PORT=`cat $HUAHIN_PORT`
+HUAHIN_SHUTDOWN_PORT=`cat $HUAHIN_SHUTDOWN_PORT`
 
 case $1 in
   start)
     echo "Starting huahin emanager"
-    java $HUAHIN_OPTS -Dhuahin.home=$BASEDIR -jar $HUAHIN_JAR $HUAHIN_WEB $HUAHIN_PORT >> $HUAHIN_LOG 2>&1 &
-    echo $! > $HUAHIN_PID
+    java $HUAHIN_OPTS -Dhuahin.home=$BASEDIR -jar $HUAHIN_JAR start $HUAHIN_WEB $HUAHIN_PORT $HUAHIN_SHUTDOWN_PORT >> $HUAHIN_LOG 2>&1 &
     ;;
   stop)
     echo "Stopping huahin emanager"
-    if [ -e $HUAHIN_PID ];
-    then
-      PID=`cat $HUAHIN_PID`
-      kill -KILL $PID
-      rm -f $HUAHIN_PID
-    fi
+    java $HUAHIN_OPTS -Dhuahin.home=$BASEDIR -jar $HUAHIN_JAR stop $HUAHIN_WEB $HUAHIN_PORT $HUAHIN_SHUTDOWN_PORT >> $HUAHIN_LOG 2>&1 &
     ;;
   restart)
     echo "Stopping huahin emanager"
-    if [ -e $HUAHIN_PID ];
-    then
-      PID=`cat $HUAHIN_PID`
-      kill -KILL $PID
-      rm -f $HUAHIN_PID
-    fi
+    java $HUAHIN_OPTS -Dhuahin.home=$BASEDIR -jar $HUAHIN_JAR stop $HUAHIN_WEB $HUAHIN_PORT $HUAHIN_SHUTDOWN_PORT >> $HUAHIN_LOG 2>&1 &
 
     echo "Starting huahin emanager"
-    java $HUAHIN_OPTS -Dhuahin.home=$BASEDIR -jar $HUAHIN_JAR $HUAHIN_WEB $HUAHIN_PORT >> $HUAHIN_LOG 2>&1 &
-    echo $! > $HUAHIN_PID
+    java $HUAHIN_OPTS -Dhuahin.home=$BASEDIR -jar $HUAHIN_JAR start $HUAHIN_WEB $HUAHIN_PORT $HUAHIN_SHUTDOWN_PORT >> $HUAHIN_LOG 2>&1 &
     ;;
   *)
     echo "Usage: $0 {start|stop|restart}"

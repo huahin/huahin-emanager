@@ -72,7 +72,7 @@ public class QueueService {
     private static final int LIST_RUNNING = 1;
 
     private static final int METHOD_PUT = 0;
-    private static final int METHOD_POST = 0;
+    private static final int METHOD_POST = 1;
 
     private static final String CONTENT_DISPOSITION = "Content-Disposition";
     private static final String FORM_DATA_NAME_SCRIPT = "form-data; name=\"SCRIPT\"";

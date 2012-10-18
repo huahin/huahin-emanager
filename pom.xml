@@ -105,7 +105,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>org.huahinframework.manager.Runner</mainClass>
+              <mainClass>org.huahinframework.emanager.Runner</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -179,22 +179,22 @@
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
       <artifactId>jetty</artifactId>
-      <version>6.1.25</version>
+      <version>6.1.26</version>
     </dependency>
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
       <artifactId>jetty-ajp</artifactId>
-      <version>6.1.25</version>
+      <version>6.1.26</version>
     </dependency>
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
       <artifactId>jetty-util</artifactId>
-      <version>6.1.25</version>
+      <version>6.1.26</version>
     </dependency>
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
       <artifactId>jetty-management</artifactId>
-      <version>6.1.25</version>
+      <version>6.1.26</version>
     </dependency>
 
     <dependency>
@@ -217,17 +217,7 @@
       <artifactId>wink-client</artifactId>
       <version>1.1.2-incubating</version>
     </dependency>
-    <dependency>
-      <groupId>org.apache.wink</groupId>
-      <artifactId>wink-client-apache-httpclient</artifactId>
-      <version>1.1.2-incubating</version>
-    </dependency>
 
-    <dependency>
-      <groupId>org.apache.hadoop</groupId>
-      <artifactId>hadoop-core</artifactId>
-      <version>1.0.3</version>
-    </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk</artifactId>
