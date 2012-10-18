@@ -22,7 +22,7 @@
     <format>tar.gz</format>
   </formats>
   <includeBaseDirectory>true</includeBaseDirectory>
-  <baseDirectory>huahin-manager-${project.version}</baseDirectory>
+  <baseDirectory>huahin-emanager-${project.version}</baseDirectory>
   <fileSets>
     <fileSet>
       <outputDirectory>/log</outputDirectory>
@@ -32,14 +32,7 @@
       <fileMode>0644</fileMode>
     </fileSet>
     <fileSet>
-      <outputDirectory>/queue/queue</outputDirectory>
-      <includes>
-        <include></include>
-      </includes>
-      <fileMode>0644</fileMode>
-    </fileSet>
-    <fileSet>
-      <outputDirectory>/queue/jar</outputDirectory>
+      <outputDirectory>/queue</outputDirectory>
       <includes>
         <include></include>
       </includes>
