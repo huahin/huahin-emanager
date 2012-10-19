@@ -107,7 +107,7 @@ Get running job flow list.
   For example:
   ~ $ curl -X GET "http://<HOSTNAME>:9020/jobflow/runnings"
 
-Get describe job flow
+Get describe job flow.
   <JOB FLOW ID> specifies the job flow ID.
   ~ $ curl -X GET "http://<HOSTNAME>:9020/jobflow/describe/<JOB FLOW ID>"
 
@@ -132,7 +132,7 @@ Get running queue list.
   For example:
   ~ $ curl -X GET "http://<HOSTNAME>:9020/queue/runnings"
 
-Get describe queue
+Get describe queue.
   <STEP NAME> specifies the step name.
   ~ $ curl -X GET "http://<HOSTNAME>:9020/queue/describe/<STEP NAME>"
 
