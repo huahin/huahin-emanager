@@ -24,8 +24,8 @@
   <version>0.1.0</version>
   <packaging>jar</packaging>
 
-  <name>huahin-manager</name>
-  <url>http://huahinframework/huahin-manager/</url>
+  <name>huahin-emanager</name>
+  <url>http://huahinframework/huahin-emanager/</url>
 
   <licenses>
     <license>
