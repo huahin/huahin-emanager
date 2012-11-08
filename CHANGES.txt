@@ -1,2 +1,5 @@
+0.1.1
+ * bug fix: S3 endpoint
+
 0.1.0
  * first reelase

@@ -14,6 +14,8 @@
               value="${emr.accesskey}"/>
     <property name="secretKey"
               value="${emr.secretkey}"/>
+    <property name="s3Endpoint"
+              value="${s3.endpoint}"/>
     <property name="endpoint"
               value="${emr.endpoint}"/>
     <property name="keyPairName"

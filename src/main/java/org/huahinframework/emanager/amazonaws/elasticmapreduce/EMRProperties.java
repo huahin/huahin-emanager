@@ -24,6 +24,7 @@ public class EMRProperties {
     private boolean jobForWait;
     private String accessKey;
     private String secretKey;
+    private String s3Endpoint;
     private String endpoint;
     private String keyPairName;
     private String hadoopVersion;
@@ -74,6 +75,20 @@ public class EMRProperties {
      */
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
+    }
+
+    /**
+     * @return the s3Endpoint
+     */
+    public String getS3Endpoint() {
+        return s3Endpoint;
+    }
+
+    /**
+     * @param s3Endpoint the s3Endpoint to set
+     */
+    public void setS3Endpoint(String s3Endpoint) {
+        this.s3Endpoint = s3Endpoint;
     }
 
     /**

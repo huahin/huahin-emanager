@@ -45,6 +45,10 @@ For example:
   # AWS secret key(required)
   emr.secretkey=YYYYYYYYYYYYYYY
 
+  # Regions and Endpoints.(If not specified, the default of S3 is applied.)
+  # (http://docs.amazonwebservices.com/general/latest/gr/rande.html)
+  s3.endpoint=s3.amazonaws.com
+
   # Regions and Endpoints.(If not specified, the default of EMR is applied.)
   # (http://docs.amazonwebservices.com/general/latest/gr/rande.html)
   emr.endpoint=elasticmapreduce.us-east-1.amazonaws.com

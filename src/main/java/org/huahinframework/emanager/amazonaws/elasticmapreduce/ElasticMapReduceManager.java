@@ -105,7 +105,7 @@ public class ElasticMapReduceManager extends Thread {
                                         emrProperties.getSecretKey()));
         if (!isEmpty(emrProperties.getEndpoint())) {
             emr.setEndpoint(emrProperties.getEndpoint());
-            s3.setEndpoint(emrProperties.getEndpoint());
+            s3.setEndpoint(emrProperties.getS3Endpoint());
         }
     }
 

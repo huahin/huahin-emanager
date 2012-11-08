@@ -600,8 +600,8 @@ public class QueueService {
         s3 = new AmazonS3Client(
                 new BasicAWSCredentials(emrProperties.getAccessKey(),
                                         emrProperties.getSecretKey()));
-        if (!isEmpty(emrProperties.getEndpoint())) {
-            s3.setEndpoint(emrProperties.getEndpoint());
+        if (!isEmpty(emrProperties.getS3Endpoint())) {
+            s3.setEndpoint(emrProperties.getS3Endpoint());
         }
     }
 
