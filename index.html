@@ -96,7 +96,7 @@ For example:<br></p>
 <p>Regions and Endpoints.(If not specified, the default of EMR is applied.)<br>
 (<a href="http://docs.amazonwebservices.com/general/latest/gr/rande.html">http://docs.amazonwebservices.com/general/latest/gr/rande.html</a>)</p>
 
-<pre><code>emr.secretkey=YYYYYYYYYYYYYYY
+<pre><code>emr.endpoint=elasticmapreduce.us-east-1.amazonaws.com
 </code></pre>
 
 <p>Availability zone.(If not specified, the default of EMR is applied.)</p>
@@ -258,24 +258,16 @@ POST method upload the scripts or jar to S3.</p>
 <li>PUT method
 
 <ul>
-<li>Required ARGUMENTS
-
-<ul>
+<li>Required ARGUMENTS</li>
 <li>script</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>POST method
 
 <ul>
 <li>Required SCRIPT</li>
-<li>Required ARGUMENTS
-
-<ul>
+<li>Required ARGUMENTS</li>
 <li>script</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul><p>For PUT Hive example:</p>
@@ -328,12 +320,8 @@ For POST Hive example:</p>
 <li>PUT method
 
 <ul>
-<li>Required ARGUMENTS
-
-<ul>
+<li>Required ARGUMENTS</li>
 <li>input, output, mapper, reducer</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>POST method
@@ -341,12 +329,8 @@ For POST Hive example:</p>
 <ul>
 <li>Required MAPPER</li>
 <li>Required REDUCER</li>
-<li>Required ARGUMENTS
-
-<ul>
+<li>Required ARGUMENTS</li>
 <li>input, output, mapper, reducer</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul><p>For PUT example:</p>
@@ -384,24 +368,16 @@ For POST Pig example:</p>
 <li>PUT method
 
 <ul>
-<li>Required ARGUMENTS
-
-<ul>
+<li>Required ARGUMENTS</li>
 <li>jar</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>POST method
 
 <ul>
 <li>Required JAR</li>
-<li>Required ARGUMENTS
-
-<ul>
+<li>Required ARGUMENTS</li>
 <li>jar</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul><p>For PUT example:</p>
