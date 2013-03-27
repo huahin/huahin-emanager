@@ -41,7 +41,7 @@ Huahin EManager is optimized to reduce the cost and start the instance.</p>
 
 <h3>Download</h3>
 
-<p><a href="http://huahin-framework.googlecode.com/files/huahin-emanager-0.1.1.tar.gz">Huahin EManager 0.1.1</a>
+<p><a href="http://huahin-framework.googlecode.com/files/huahin-emanager-0.1.2.tar.gz">Huahin EManager 0.1.2</a>
 <br></p>
 
 <h3>Requirements</h3>
@@ -64,6 +64,18 @@ Huahin EManager is optimized to reduce the cost and start the instance.</p>
 
 <pre><code>Port range: 9010
 Source: 1.1.1.1/32
+</code></pre>
+
+<p><br></p>
+
+<h3>Setup of AWS EMR Bootstrap</h3>
+
+<p><a href="http://huahin-framework.googlecode.com/files/configure">Download Huahin Manager Bootstrap Configure</a><br>
+Configure File upload to S3.<br></p>
+
+<p>Example:</p>
+
+<pre><code>  s3://huahin/manager/configure
 </code></pre>
 
 <p><br></p>
@@ -143,6 +155,11 @@ For example:<br></p>
 <p>To copy log files from the job flow to Amazon S3, specify an Amazon S3 bucket.(optional)</p>
 
 <pre><code>emr.loguri=s3://loguri/
+</code></pre>
+
+<p>Huahin Manager EMR Bootstrap S3 path.(required)</p>
+
+<pre><code>configure.s3.path=s3://hauhin/manager/configure
 </code></pre>
 
 <p>When you change the boot port and shutdown port, edit the huahin-emanager-x.x.x/conf/port and shutdown port file.</p>
