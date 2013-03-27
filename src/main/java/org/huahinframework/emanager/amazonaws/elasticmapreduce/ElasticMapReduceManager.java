@@ -67,8 +67,6 @@ public class ElasticMapReduceManager extends Thread {
             "s3://elasticmapreduce/bootstrap-actions/configurations/latest/memory-intensive";
     private static final String HADOOP_BOOTSTRAP_URI =
             "s3://elasticmapreduce/bootstrap-actions/configure-hadoop";
-    private static final String HUAHIN_MANAGER_URI =
-            "s3://huahin/manager/configure";
 
     private static final int POLLING_SECOND = 1 * (1000 * 60); // 1 minute
     private static final int TIME_LIMIT_MINUTES = 50;
@@ -140,7 +138,7 @@ public class ElasticMapReduceManager extends Thread {
                                 new BootstrapActionConfig().withName(HUAHIN_BOOTSTRAP_NAME)
                                                            .withScriptBootstrapAction(
                                                                    new ScriptBootstrapActionConfig()
-                                                                       .withPath(HUAHIN_MANAGER_URI)))
+                                                                       .withPath(emrProperties.getConfigureS3Path())))
                             .withInstances(setupJobFlowInstancesConfig());
             if (!isEmpty(emrProperties.getLogUri())) {
                 runJobFlowRequest.setLogUri(emrProperties.getLogUri());

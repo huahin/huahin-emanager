@@ -34,5 +34,7 @@
               value="${emr.debug}"/>
     <property name="logUri"
               value="${emr.loguri}"/>
+    <property name="configureS3Path"
+              value="${configure.s3.path}"/>
   </bean>
 </beans>

@@ -34,6 +34,7 @@ public class EMRProperties {
     private String slaveInstanceType;
     private boolean debug;
     private String logUri;
+    private String configureS3Path;
 
     /**
      * @return the jobForWait
@@ -215,5 +216,19 @@ public class EMRProperties {
      */
     public void setLogUri(String logUri) {
         this.logUri = logUri;
+    }
+
+    /**
+     * @return the configureS3Path
+     */
+    public String getConfigureS3Path() {
+        return configureS3Path;
+    }
+
+    /**
+     * @param configureS3Path the configureS3Path to set
+     */
+    public void setConfigureS3Path(String configureS3Path) {
+        this.configureS3Path = configureS3Path;
     }
 }

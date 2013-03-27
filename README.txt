@@ -28,6 +28,14 @@ Set the your IP address and port(9010) for the Huahin Manager to the Security Gr
   Source: 1.1.1.1/32
 
 -----------------------------------------------------------------------------
+Setup of AWS EMR Bootstrap
+Download Huahin Manager Bootstrap Configure(http://huahin-framework.googlecode.com/files/configure)
+Configure File upload to S3.
+
+Example:
+  s3://huahin/manager/configure
+
+-----------------------------------------------------------------------------
 Configure Huahin EManager
 
 Edit the huahin-emanager-x.x.x/conf/huahinEManager.properties file.
@@ -76,6 +84,9 @@ For example:
 
   # To copy log files from the job flow to Amazon S3, specify an Amazon S3 bucket.(optional)
   emr.loguri=s3://loguri/
+
+  # Huahin Manager EMR Bootstrap S3 path.(required)
+  configure.s3.path=s3://hauhin/manager/configure
 
 When you change the boot port and shutdown port, edit the huahin-emanager-x.x.x/conf/port and shutdown port file.
 
